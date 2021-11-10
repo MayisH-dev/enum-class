@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <AssemblyName>MayisHDev.EnumClass</AssemblyName>
+    <RootNamespace>MayisHDev.EnumClass</RootNamespace>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Using Include="System" />
+    <Using Include="MayisHDev.EnumClass.Guards" />
+    <Using Include="MayisHDev.EnumClass.ValueFunc" />
+  </ItemGroup>
+
+</Project>

@@ -30,7 +30,7 @@
     <Using Include="Xunit" />
     <Using Include="FluentAssertions" />
     <Using Include="MayisHDev.EnumClass" />
-    <Using Include="MayisHDev.EnumClass.ValueFunc" />
+    <Using Include="MayisHDev.EnumClass.Functions" />
   </ItemGroup>
 
 </Project>

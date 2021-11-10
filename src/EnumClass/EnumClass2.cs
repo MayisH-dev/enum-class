@@ -19,17 +19,17 @@ public static class EnumClass2Extensions
 #pragma warning restore CS8509
     }
 
-    public static TOut Switch<TEnumClass2, T1, T2, TFunc1, TFunc2, TOut>(this TEnumClass2 enumClass2)
+    public static TOut Switch<TEnumClass2, T1, T2, TFunction1, TFunction2, TOut>(this TEnumClass2 enumClass2)
         where TEnumClass2 : struct, EnumClass2<T1, T2>
-        where TFunc1 : struct, ValueFunc2<T1, TOut>
-        where TFunc2 : struct, ValueFunc2<T2, TOut>
+        where TFunction1 : struct, IFunction<T1, TOut>
+        where TFunction2 : struct, IFunction<T2, TOut>
     {
         GuardAgainst.NotOfType<TEnumClass2, Case1<T1, T2>, Case2<T1, T2>>(enumClass2);
 #pragma warning disable CS8509
         return enumClass2 switch
         {
-            Case1<T1, T2>(var value) => new TFunc1().Apply(value),
-            Case2<T1, T2>(var value) => new TFunc2().Apply(value),
+            Case1<T1, T2>(var value) => new TFunction1().Apply(value),
+            Case2<T1, T2>(var value) => new TFunction2().Apply(value),
         };
 #pragma warning restore CS8509
     }
@@ -42,16 +42,16 @@ public static class EnumClass2Extensions
     {
         private readonly TEnumClass2 _value;
         public ValueMatcher(TEnumClass2 value) => _value = value;
-        public TOut With<TFunc1, TFunc2, TOut>()
-        where TFunc1 : struct, ValueFunc2<T1, TOut>
-        where TFunc2 : struct, ValueFunc2<T2, TOut>
+        public TOut With<TFunction1, TFunction2, TOut>()
+        where TFunction1 : struct, IFunction<T1, TOut>
+        where TFunction2 : struct, IFunction<T2, TOut>
         {
             GuardAgainst.NotOfType<TEnumClass2, Case1<T1, T2>, Case2<T1, T2>>(_value);
 #pragma warning disable CS8509
             return _value switch
             {
-                Case1<T1, T2>(var value) => new TFunc1().Apply(value),
-                Case2<T1, T2>(var value) => new TFunc2().Apply(value),
+                Case1<T1, T2>(var value) => new TFunction1().Apply(value),
+                Case2<T1, T2>(var value) => new TFunction2().Apply(value),
             };
 #pragma warning restore CS8509
         }

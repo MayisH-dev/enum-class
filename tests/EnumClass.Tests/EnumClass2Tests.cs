@@ -3,11 +3,13 @@ namespace MayisHDev.EnumClass.Tests;
 public sealed class EnumClass2Tests
 {
     private struct DontDoThis : EnumClass2<int, int> { }
-    private struct Return1 : ValueFunc2<int, int>
+
+    private struct Return1 : IFunction<int, int>
     {
         public int Apply(int value) => 1;
     }
-    private struct Return2 : ValueFunc2<int, int>
+
+    private struct Return2 : IFunction<int, int>
     {
         public int Apply(int value) => 2;
     }
@@ -81,7 +83,7 @@ public sealed class EnumClass2Tests
     {
         DontDoThis implementation = new();
 
-        implementation.Invoking(x => 
+        implementation.Invoking(x =>
                 x.Match<DontDoThis, int, int>().With<Return1, Return2, int>())
             .Should().Throw<InvalidOperationException>();
     }

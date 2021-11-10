@@ -10,7 +10,7 @@
   <ItemGroup>
     <Using Include="System" />
     <Using Include="MayisHDev.EnumClass.Guards" />
-    <Using Include="MayisHDev.EnumClass.ValueFunc" />
+    <Using Include="MayisHDev.EnumClass.Functions" />
   </ItemGroup>
 
 </Project>
